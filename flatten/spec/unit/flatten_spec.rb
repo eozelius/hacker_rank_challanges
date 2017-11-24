@@ -2,8 +2,8 @@ require_relative '../../lib/flatten'
 
 RSpec.describe 'flatten function' do
 	let(:already_flat){ [5, 6, 0, 2, 9] }
-	let(:two_d_array) { [0, 7, [0, 7, 5], 77] }
-	let(:flat_two_d_array) { [8, 76, 0, 7, 5, 77] }
+	let(:two_d_array) { [8, 7, [0, 7, 5], 77] }
+	let(:flat_two_d_array) { [8, 7, 0, 7, 5, 77] }
 	let(:multi_d_array) { [2, 3, [4, [1, 6, 0, [2]], 5]] }
 	let(:flat_multi_d_array) { [2, 3,  4,  1, 6, 0,  2,   5] }
 
@@ -11,7 +11,7 @@ RSpec.describe 'flatten function' do
 		it 'returns an already flat array' do
 			flat = flatten(already_flat)
 			expect(flat).to eq(already_flat)
-		end		
+		end
 	end
 
 	context 'Array is Not already flat' do
