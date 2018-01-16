@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
 
 function Square(props) {
   return (
@@ -47,11 +47,11 @@ class Game extends React.Component {
     super(props)
     this.state = {
       history: [{
-        squares: Array(9).fill(null),
+        squares: Array(9).fill(null)
       }],
       stepNumber: 0,
       xIsNext: true,
-    };
+    }
   }
 
   handleClick(i) {
@@ -59,7 +59,7 @@ class Game extends React.Component {
     const current = history[history.length - 1]
     const squares = current.squares.slice()
     if(calculateWinner(squares) || squares[i]){
-      return;
+      return
     }
     squares[i] = this.state.xIsNext ? 'X' : 'O'
     this.setState({
@@ -82,18 +82,25 @@ class Game extends React.Component {
     const history = this.state.history
     const current = history[this.state.stepNumber]
     const winner  = calculateWinner(current.squares)
-    let status;
+    let status
 
     const moves = history.map((step, move) => {
-      let desc
+      let prompt
       if(move){
-        desc = `Go to move # ${move}`
+        prompt = `Go to move # ${move}`
       } else {
-        desc = `Go to Start`
+        prompt = `Go to Start`
       }
+
+
+
+
+      //console.log(`step: ${JSON.stringify(step)}`)
+      //console.log(`move: ${move}`)
+
       return (
         <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button onClick={() => this.jumpTo(move)}>{prompt}</button>
         </li>
       )
     })
@@ -116,7 +123,7 @@ class Game extends React.Component {
           <ul>{moves}</ul>
         </div>
       </div>
-    );
+    )
   }
 }
 
@@ -130,15 +137,15 @@ function calculateWinner(squares) {
     [2, 5, 8],
     [0, 4, 8],
     [2, 4, 6],
-  ];
+  ]
   
   for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
+    const [a, b, c] = lines[i]
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return squares[a]
     }
   }
-  return null;
+  return null
 }
 
 
@@ -147,4 +154,4 @@ function calculateWinner(squares) {
 ReactDOM.render(
   <Game />,
   document.getElementById('root')
-);
+)
